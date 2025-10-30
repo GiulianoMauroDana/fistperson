@@ -13,4 +13,13 @@ public class Enemy : MonoBehaviour
     {
         
     }
+    private void OnConllisionEnter(Collision collision)
+    {
+        Debug.Log("funciona"+collision.gameObject.name);
+        if (collision.gameObject.CompareTag("bullet"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
