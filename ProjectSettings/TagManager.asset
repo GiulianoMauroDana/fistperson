@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - CinemachineTarget
+  - Undefined
   - bullet
   layers:
   - Default
