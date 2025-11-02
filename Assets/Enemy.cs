@@ -6,11 +6,11 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     private static int _score;
-    
+    private bool 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        UpdateUI();
+       UpdateUI();
     }
 
     // Update is called once per frame
@@ -25,17 +25,20 @@ public class Enemy : MonoBehaviour
             _score++;
             Destroy(collision.gameObject);
             Destroy(gameObject);            
-            UpdateUI();
-        }
-
+           UpdateUI();
+        }  
+    }
+    private void OnTriggerEnter(Collider collision)
+    {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
             scoreText.text = "Lose" +
-                "Press R to Restart";
+               "Press R to Restart";
+            Destroy(collision.gameObject);            
             UpdateUI();
         }
     }
+    private void
     private void Reiniciar()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -51,7 +54,7 @@ public class Enemy : MonoBehaviour
     {
         if (_score == 4)
         {
-            scoreText.text = "win" +
+           scoreText.text = "win" +
                 "Press R to restart";
         }
     }
