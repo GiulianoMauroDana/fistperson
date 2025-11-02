@@ -1,11 +1,15 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player1 : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI subtitleText;
     private static int _score;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,11 +25,14 @@ public class Player1 : MonoBehaviour
     private void OnEnable()
     {
         Enemy.enemyKill += CountPoints;
+        
     }
     private void OnDisable()
     {
         Enemy.enemyKill -= CountPoints;
-    }
+        
+    }  
+    
     private void CountPoints(int scoreEnter)
     {
         _score+=scoreEnter;
@@ -39,8 +46,10 @@ public class Player1 : MonoBehaviour
     {
         if (_score == 4)
         {
-            scoreText.text = "win" +
-                 "Press R to restart";
+            titleText.text = "win";
+            subtitleText.text = "Press R to restart";
+            Time.timeScale = 0f;
+            _score = 0;
         }
     }
     private void Reiniciar()
@@ -48,6 +57,7 @@ public class Player1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene("Playground 1");
+            Time.timeScale = 1f;
         }
     }
 }

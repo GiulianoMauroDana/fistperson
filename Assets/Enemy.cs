@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private int _score;
-    public static Action<int> enemyKill;
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI subtitleText;
+    [SerializeField] private int _score;    
+    public static Action<int> enemyKill;    
    // private bool 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,10 +26,9 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            scoreText.text = "Lose" +
-               "Press R to Restart";
-            Destroy(collision.gameObject);           
-            
+            titleText.text = "Lose ";
+            subtitleText.text = "Press R to Restart";
+            Destroy(collision.gameObject);            
         }
         if (collision.gameObject.CompareTag("bullet"))
         {
@@ -45,14 +45,5 @@ public class Enemy : MonoBehaviour
         {
             SceneManager.LoadScene("Playground 1");
         }
-    }
-    
-    private void WinCondision()
-    {
-        if (_score == 3)
-        {           
-           scoreText.text = "win" +
-                "Press R to restart";
-        }
-    }
+    }   
 }
